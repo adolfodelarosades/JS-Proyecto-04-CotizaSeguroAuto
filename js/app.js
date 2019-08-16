@@ -17,8 +17,22 @@ function Seguro(marca, anio, tipo){
 }
 
 //Todo lo que muestra la interfaz
-function Interfaz() {
+function Interfaz() {}
 
+//Mensaje se imprime en el HTML
+Interfaz.prototype.mostrarMensaje = function( mensaje, tipo ){
+    const div = document.createElement('div');
+    if ( tipo === 'error' ){
+        div.classList.add('mensaje','error');
+    } else {
+        div.classList.add('mensaje','correcto');
+    }
+    div.innerHTML = mensaje;
+    formulario.insertBefore(div, document.querySelector('.form-group'));
+
+    setTimeout(function() {
+        document.querySelector('.mensaje').remove();
+    }, 3000);
 }
 
 //EventListener
@@ -43,7 +57,7 @@ formulario.addEventListener('submit', function(e){
 
     // Revisamos que los campos no esten vacios
     if(marcaSeleccionada === '' || anioSeleccionado === '' || tipo === ''){
-        console.log('Faltan Datos');
+        interfaz.mostrarMensaje('Faltan datos, revisa el formulario y prueba de nuevo', 'error');
     }else{
         console.log('Todo correcto');
     }
