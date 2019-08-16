@@ -107,13 +107,19 @@ Interfaz.prototype.mostrarResultado = function(seguro, total){
     const div = document.createElement('div');
     //Insertar la información
     div.innerHTML = `
-        <p>Resumen: </p>
+        <p class='header'>Resumen: </p>
         <p>Marca: ${marca} </p>
         <p>Año: ${seguro.anio} </p>
         <p>Tipo: ${tipo} </p>
         <p>Total: ${total} </p>
     `;
-    resultado.appendChild(div);
+
+    const spinner = document.querySelector('#cargando img');
+    spinner.style.display = 'block';
+    setTimeout(function() {
+        spinner.style.display = 'none';
+        resultado.appendChild(div);    
+    }, 3000);
 };
 
 //EventListener
@@ -141,6 +147,11 @@ formulario.addEventListener('submit', function(e){
         //Interfaz imprimiendo mensaje de error
         interfaz.mostrarMensaje('Faltan datos, revisa el formulario y prueba de nuevo', 'error');
     }else{
+        //Limpiar resultados anteriores
+        const resultados = document.querySelector('#resultado div');
+        if( resultados != null ){
+            resultados.remove();
+        }
         //Instanciar seguro y mostrar interfaz
         const seguro = new Seguro(marcaSeleccionada, anioSeleccionado, tipo);
         //console.log(seguro);
@@ -150,5 +161,6 @@ formulario.addEventListener('submit', function(e){
 
         //Mostrar el resultado
         interfaz.mostrarResultado(seguro, cantidad);
+        interfaz.mostrarMensaje('Cotizando...', 'correcto');
     }
 });
