@@ -1,5 +1,7 @@
 # Cotizador de Seguro de Autos
 
+[Cotizador de Seguro de Autos](https://adolfodelarosades.github.io/JS-Proyecto-04-CotizaSeguroAuto/)
+
 El proyecto de Cotizador de Seguro de Autos debe cumplir las siguientes características:
 
 * Existen 3 modelos de autos, cada uno con precios distintos.
@@ -9,6 +11,7 @@ El proyecto de Cotizador de Seguro de Autos debe cumplir las siguientes caracter
 
 Lo que se utiliza:
 
+* Manipulación del DOM
 * Prototypes
 * Classes
 * [Bootstrap Material](https://fezvrasta.github.io/bootstrap-material-design/)
